@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script defer src="script.mjs" type="module"></script>
+<title>Burn It!</title>
+
+<h1 id="motivate">Burn it!</h1>
+
+<section id="timerScreen">
+    <h3 id="timer">Timer Will Appear Here!</h3>
+</section>
+
+<section id="startItems">
+    <section id="setTime">
+        <p>Set a time for your exercise in Minutes and Seconds
+        <br>
+        <input id="timeLimMin" type="number" placeholder="Minutes">
+        <label for="timeLimMin"> : </label>
+        <input id="timeLimSec" type="number" placeholder="Seconds">
+        <label for="timeLimSec" id="secondError"></label>
+    </section>
+    
+    <section id="setOptions">
+        <input id="setsLim" type="number" placeholder="Set a number of sets.">
+        <br>
+        <input id="restLim" type="number" placeholder="Set a rest period.">
+    </section>
+    
+    <button id="start">Start Timer</button>
+    <button id="pause" disabled>Pause Timer.</button>
+    <button id="stop" disabled>Stop Timer.</button>
+</section>

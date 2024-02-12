@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script defer src="script.mjs" type="module"></script>
+<title>Burn It!</title>
+
+<h1 id="motivate">Burn it!</h1>
+
+<section id="timerScreen">
+    <h3 id="timer">Timer Will Appear Here!</h3>
+</section>
+
+<section id="startItems">
+    <section id="setTime">
+        <h3>Set a time for your exercise in Minutes and Seconds and Hours.</h3>
+        <time id="mainTimer">00hr 00min 00sec</time>
+    </section>
+    
+    <button id="start">Start Timer</button>
+    <button id="pause">Pause Timer.</button>
+    <button id="stop">Stop Timer.</button>
+
+
+    <ul id="workoutsList">
+        <li id="workoutItem">
+            <section id="addSetsSect">
+                <button id="addSet">+</button>
+            </section>
+
+            <section id="setsSect">
+                <input id="setsBox" />
+                <label for="setsBox" id="setsText">Sets</p>
+            </section>
+
+            <section id="weightSect">
+                <input id="weightBox" />
+                <label for="weightBox" id="weightText">KG</p>
+            </section>
+
+            <section id="repsSect">
+                <input id="repsBox" />
+                <label for="repsBox" id="repsText">Reps</p>
+            </section>
+
+            <section>
+                <p>00hr 00min 00sec</p>
+            </section>
+
+            <section id="finishSect">
+                <button>
+                    Finish Workout.
+                </button>
+            </section>
+        </li>
+    </ul>
+</section>
