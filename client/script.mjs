@@ -1,3 +1,4 @@
+import { addWorkout } from "./newWorkout.mjs";
 import { timerText } from "./timerDOM.mjs";
 
 const startBtn = document.querySelector('#start');
@@ -29,24 +30,27 @@ function timer() {
     intvID = setTimeout(fixTime, 1000);
 }
 
-startBtn.addEventListener('click', function() { 
-    timer();
-} )
-
-pauseBtn.addEventListener('click', function() {
-    clearTimeout(intvID);
-})
-
-stopBtn.addEventListener('click', function() {
-    timerDisplay.textContent = '00hr 00min 00sec';
-    hours = 0;
-    min = 0;
-    sec = 0;
-    clearTimeout(intvID);
-})
+function eventListeners() {
+    startBtn.addEventListener('click', function() { 
+        timer();
+    } )
+    
+    pauseBtn.addEventListener('click', function() {
+        clearTimeout(intvID);
+    })
+    
+    stopBtn.addEventListener('click', function() {
+        timerDisplay.textContent = '00hr 00min 00sec';
+        hours = 0;
+        min = 0;
+        sec = 0;
+        clearTimeout(intvID);
+    })
+}
 
 function pageLoaded(){
     console.log("Hi?")
+    eventListeners();
 }
 
 pageLoaded();

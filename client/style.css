@@ -1,0 +1,11 @@
+@import 'reset.css';
+
+li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#finTime {
+    padding-bottom: 10px;
+}

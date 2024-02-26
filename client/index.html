@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
 <script defer src="script.mjs" type="module"></script>
 <title>Burn It!</title>
 
@@ -18,34 +19,36 @@
     <button id="start">Start Timer</button>
     <button id="pause">Pause Timer.</button>
     <button id="stop">Stop Timer.</button>
+</section>
 
 
+<section id="workoutPage">
     <ul id="workoutsList">
-        <li id="workoutItem">
-            <section id="addSetsSect">
+        <li id="workoutItem" class="workList">
+            <section id="addSetsSect" class="addSetsSection">
                 <button id="addSet">+</button>
             </section>
 
-            <section id="setsSect">
+            <section id="setsSect" class="setsSection">
                 <input id="setsBox" />
                 <label for="setsBox" id="setsText">Sets</p>
             </section>
 
-            <section id="weightSect">
+            <section id="weightSect" class="weightSection">
                 <input id="weightBox" />
                 <label for="weightBox" id="weightText">KG</p>
             </section>
 
-            <section id="repsSect">
+            <section id="repsSect" class="repsSection">
                 <input id="repsBox" />
                 <label for="repsBox" id="repsText">Reps</p>
             </section>
 
-            <section>
-                <p>00hr 00min 00sec</p>
+            <section class="finTimeSection">
+                <p id="finTime">00hr 00min 00sec</p>
             </section>
 
-            <section id="finishSect">
+            <section id="finishSect" class="finishWorkoutSection">
                 <button>
                     Finish Workout.
                 </button>
