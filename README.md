@@ -15,3 +15,8 @@ A High Interval Intensity Training App
 * An animated circular display of timer, With an audio cue that notifies the user they need to perform a certain task.
 * Finish UI, Make it responsive to different device sizes.
 * Possibly have an authorization feature.
+
+
+* PLAN TO CHANGE THE TIMER TO COUNT DOWN AND WORK WITH SETS AND REPS RATHER THAN HOW IT IS CURRENTLY FORMATTED 
+* USED AN ANNOYING WAY OF APPENDING ITEMS TO THE BODY FO A DOCUMENT.
+* PLAN TO USE LOOKUP ARRAY INSTEAD

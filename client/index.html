@@ -1,58 +1,20 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
-<script defer src="script.mjs" type="module"></script>
+<script defer src="saveWorkout.mjs" type="module"></script>
 <title>Burn It!</title>
+<main>
 
-<h1 id="motivate">Burn it!</h1>
+    <section id="timerImg"></section>
 
-<section id="timerScreen">
-    <h3 id="timer">Timer Will Appear Here!</h3>
-</section>
+    <section id="createWorkout">
+        <input id="workoutName" type="text" placeholder="Name your Workout">
+        <input id="setTime" type="time" step="1" value="00:00:00">
+        <input id="rest" type="value" placeholder="Input Rest Time Here (Max 60s)">
+        <input id="sets" type="value" placeholder="Input the Number of Sets Here (Default 1)">
 
-<section id="startItems">
-    <section id="setTime">
-        <h3>Set a time for your exercise in Minutes and Seconds and Hours.</h3>
-        <time id="mainTimer">00hr 00min 00sec</time>
+        <button id="save">Save Workout!</button>
     </section>
-    
-    <button id="start">Start Timer</button>
-    <button id="pause">Pause Timer.</button>
-    <button id="stop">Stop Timer.</button>
-</section>
 
-
-<section id="workoutPage">
-    <ul id="workoutsList">
-        <li id="workoutItem" class="workList">
-            <section id="addSetsSect" class="addSetsSection">
-                <button id="addSet">+</button>
-            </section>
-
-            <section id="setsSect" class="setsSection">
-                <input id="setsBox" />
-                <label for="setsBox" id="setsText">Sets</p>
-            </section>
-
-            <section id="weightSect" class="weightSection">
-                <input id="weightBox" />
-                <label for="weightBox" id="weightText">KG</p>
-            </section>
-
-            <section id="repsSect" class="repsSection">
-                <input id="repsBox" />
-                <label for="repsBox" id="repsText">Reps</p>
-            </section>
-
-            <section class="finTimeSection">
-                <p id="finTime">00hr 00min 00sec</p>
-            </section>
-
-            <section id="finishSect" class="finishWorkoutSection">
-                <button>
-                    Finish Workout.
-                </button>
-            </section>
-        </li>
-    </ul>
-</section>
+    <ul id=workoutList></ul>
+</main>

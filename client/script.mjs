@@ -1,56 +1,39 @@
-import { addWorkout } from "./newWorkout.mjs";
-import { timerText } from "./timerDOM.mjs";
+import { createTimer } from "./timer.mjs";
 
-const startBtn = document.querySelector('#start');
-const pauseBtn = document.querySelector('#pause');
-const stopBtn = document.querySelector('#stop');
-const timerDisplay = document.querySelector('#mainTimer')
+const workoutList = document.querySelector('#workoutList');
+let currentWorkout;
 
-export let min = 0,
-        sec = 0,
-        hours = 0,
-        intvID;
 
-function fixTime() {
-    sec++
-    if (sec >= 60) {
-        sec = 0;
-        min++;
-    } if(min >= 60){
-        min = 0;
-        hours++;
+function showWorkout(workout, where) {
+    currentWorkout = workout;
+    workoutList.innerHTML = '';
+    const li = document.createElement('li');
+    li.textContent = `${workout.nameVal} ( Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ) `;
+    li.dataset.id = workout.workoutID;
+    
+    where.append(li);
+    createTimer(currentWorkout);
+}
+
+function getWorkoutID() {
+    return window.location.hash.substring(1);
+}
+
+async function loadWorkout() {
+    const id = getWorkoutID();
+    const response = await fetch(`workout/${id}`);
+    let workout;
+    if (response.ok) {
+      workout = await response.json();
+      showWorkout(workout, workoutList);
+    } else {
+      console.log('failed to send message', response);
     }
-
-    timerText();
-
-    timer();
-}
-
-function timer() {
-    intvID = setTimeout(fixTime, 1000);
-}
-
-function eventListeners() {
-    startBtn.addEventListener('click', function() { 
-        timer();
-    } )
-    
-    pauseBtn.addEventListener('click', function() {
-        clearTimeout(intvID);
-    })
-    
-    stopBtn.addEventListener('click', function() {
-        timerDisplay.textContent = '00hr 00min 00sec';
-        hours = 0;
-        min = 0;
-        sec = 0;
-        clearTimeout(intvID);
-    })
 }
 
 function pageLoaded(){
     console.log("Hi?")
-    eventListeners();
+    loadWorkout();
 }
 
 pageLoaded();

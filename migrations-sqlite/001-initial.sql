@@ -1,7 +1,6 @@
 -- up
-SELECT * FROM Accounts;
+SELECT * FROM Workouts;
 
 -- down
 
-DROP TABLE Accounts;
 DROP TABLE Workouts;

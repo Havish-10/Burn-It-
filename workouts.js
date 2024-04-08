@@ -1,7 +1,8 @@
-const el = {}
+
 
 import { open } from 'sqlite';  
 import sqlite3 from 'sqlite3';
+import uuid from 'uuid-random';
 
 async function init() {
     const db = await open({
@@ -18,34 +19,32 @@ const connect = init();
 async function initDataBase() {
   const db = await connect;
   console.log('Hello!')
-  await db.run('DROP TABLE IF EXISTS Accounts;');
   await db.run('DROP TABLE IF EXISTS Workouts;');
-  await db.run('CREATE TABLE Accounts (accountId char(25), accountName char(25))');
-  await db.run('CREATE TABLE Workouts (workoutID INT, sets INT, weight INT, reps INT)');
+  await db.run('CREATE TABLE Workouts (workoutID CHAR(36) PRIMARY KEY, nameVal TEXT, restVal INT, setNo INT, rep INT, hour INT, mins INT, secs INT)');
 }
 
 await initDataBase();
+
+export async function addWorkout(payload){
+  const db = await connect;
+  const workoutID = uuid();
+
+  await db.run('INSERT INTO Workouts VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [workoutID, payload.nameVal, payload.restVal, payload.setNo, payload.rep, payload.hour, payload.mins, payload.secs]);
+
+  return listWorkouts();
+}
 
 export async function listWorkouts() {
   const db = await connect;
   return db.all('SELECT * FROM Workouts');
 }
 
-export async function addMessage(workout) {
-  const db = await dbConn;
-
-  await db.run('INSERT INTO Workouts VALUES (?, ?, ?, ?)', [msg]);
-
-  return listMessages();
+export async function findWorkout(workoutID) {
+  const db = await connect;
+  return db.get('SELECT * FROM Workouts WHERE workoutID = ?', workoutID);
 }
-
-function prepareHandles() {
-  el.workoutList = document.querySelector('#workoutList');
-}
-
 
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
-  loadMessages();
 }
