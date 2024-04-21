@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
-<script defer src="saveWorkout.mjs" type="module"></script>
+<script defer src="saveWorkout.js" type="module"></script>
 <title>Burn It!</title>
 <main>
+    <section id="allWorkouts">
+        <section id="timerImg"></section>
 
-    <section id="timerImg"></section>
+        <section id="createWorkout">
+            <input id="workoutName" type="text" placeholder="Name your Workout">
+            <input id="setTime" type="time" step="1" value="00:00:00">
+            <input id="rest" type="number" max="60" placeholder="Input Rest Time Here (Max 60s)">
+            <input id="sets" type="value" placeholder="Input the Number of Sets Here (Default 1)">
 
-    <section id="createWorkout">
-        <input id="workoutName" type="text" placeholder="Name your Workout">
-        <input id="setTime" type="time" step="1" value="00:00:00">
-        <input id="rest" type="value" placeholder="Input Rest Time Here (Max 60s)">
-        <input id="sets" type="value" placeholder="Input the Number of Sets Here (Default 1)">
-
-        <button id="save">Save Workout!</button>
+            <button id="save">Save Workout!</button>
     </section>
 
-    <ul id=workoutList></ul>
+        <ul id='workoutList'></ul>
+    </section>
+    <section id="currentWorkout" hidden>
+        <ul id='currentWorkoutList'>
+            <li>Example</li>
+        </ul>
+        <section id="timer">
+            <p id="setDOM">Sets Left:</p>
+            <p id="timeDOM">00 Hours :00 Mins :00 Secs</p>
+            <p id="restDOM">Rest Left</p>
+        </section>
+        <button id="backBtn">Back to List/Create Workouts</button>
+    </section>
 </main>

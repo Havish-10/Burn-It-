@@ -44,6 +44,11 @@ export async function findWorkout(workoutID) {
   return db.get('SELECT * FROM Workouts WHERE workoutID = ?', workoutID);
 }
 
+export async function removeWorkout(workoutID) {
+  const db = await connect;
+  return db.run('DELETE FROM Workouts WHERE workoutID = ?', workoutID);
+}
+
 function pageLoaded() {
   prepareHandles();
   addEventListeners();

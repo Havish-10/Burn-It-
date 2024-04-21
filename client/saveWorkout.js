@@ -1,3 +1,6 @@
+import { loadWorkout } from "./script.mjs";
+import { goBack } from "./timer.mjs";
+
 const saveBtn = document.querySelector('#save');
 const workoutList = document.querySelector('#workoutList');
 
@@ -9,16 +12,7 @@ export let min = 0,
         rest = 0,
         name = ''
 
-// function fixTime() {
-//     sec++
-//     if (sec >= 60) {
-//         sec = 0;
-//         min++;
-//     } if(min >= 60){
-//         min = 0;
-//         hours++;
-//     }
-// }
+
 function fixTime() {
     if (sec >= 60) {
         sec = 0;
@@ -43,6 +37,10 @@ function grabValues() {
         name = 'Untitled Workout';
     }
 
+    if(restVal.value > 60) {
+        restVal.value = 60;
+    }
+
     const [hour, minutes, seconds] = timeVal.value.split(":");
     
     hours = parseInt(hour, 10);
@@ -52,7 +50,7 @@ function grabValues() {
     if(restVal.value){
         rest = restVal.value;
     } else if(!restVal.value){
-        rest = 1;
+        rest = 0;
     }
 
     if(setsVal.value){
@@ -80,7 +78,7 @@ async function sendWorkout() {
       console.log(updatedWorkouts);
       showWorkouts(updatedWorkouts, workoutList);
     } else {
-      console.log('failed to send message', response);
+      console.log('failed to load workouts', response);
     }
   }
 
@@ -93,19 +91,68 @@ function showWorkouts(workouts, where) {
         li.textContent = `${workout.nameVal} ( Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ) `;
         li.dataset.id = workout.workoutID;
     
-        const start = document.createElement('a');
+        const start = document.createElement('button');
         start.textContent = 'Start This Workout!';
-        start.href = `/workout#${workout.workoutID}`;
-        li.append('(', start,')');
+
+        start.addEventListener('click', async () => {
+            const response = await fetch(`/workout/${workout.workoutID}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+              });
+
+              if (response.ok) {
+                const current = await response.json();
+                selectWorkout(current);
+              } else {
+                console.log('failed to load workouts', response);
+              }
+        })
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete Workout';
+
+        deleteBtn.addEventListener('click', async () => {
+            const response = await fetch(`/remove/${workout.workoutID}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+              });
+
+              if (response.ok) {
+                const updatedWorkouts = await response.json();
+                console.log(updatedWorkouts);
+                showWorkouts(updatedWorkouts, workoutList);
+              } else {
+                console.log('failed to load workouts', response);
+              }
+        })
+
+        // const editBtn = document.createElement('button');
+        // editBtn.textContent = 'Edit Workout';
+        // start.href = `/workout/${workout.workoutID}`;
+        li.append('(', start);
+        li.append( deleteBtn, ')'); 
+        // li.append(editBtn, ')');
     
         where.append(li);
     }
+}
+
+function selectWorkout(workout) {
+    const allWorkouts = document.querySelector('#allWorkouts');
+    allWorkouts.hidden = true;
+
+    const currentWorkout = document.querySelector('#currentWorkout');
+    currentWorkout.hidden = false;
+    loadWorkout(workout.workoutID);
 }
 
 function eventListeners() {
     saveBtn.addEventListener('click', function() {
         grabValues();
     })
+
+    const backBtn = document.querySelector('#backBtn');
+    backBtn.addEventListener('click', goBack);
 }
 
 async function loadWorkouts() {
@@ -119,7 +166,7 @@ async function loadWorkouts() {
         console.log(updatedWorkouts);
         showWorkouts(updatedWorkouts, workoutList);
       } else {
-        console.log('failed to send message', response);
+        console.log('failed to load workouts', response);
       }
 }
 
