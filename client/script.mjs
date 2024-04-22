@@ -4,7 +4,7 @@ const workoutList = document.querySelector('#currentWorkoutList');
 let currentWorkout;
 
 
-function showWorkout(workout, where) {
+async function showWorkout(workout, where) {
     currentWorkout = workout;
     workoutList.innerHTML = '';
     const li = document.createElement('li');
@@ -13,7 +13,7 @@ function showWorkout(workout, where) {
 
     where.append(li);
     console.log(where);
-    createTimer(currentWorkout);
+    await createTimer(currentWorkout);
 }
 
 export async function loadWorkout(id) {

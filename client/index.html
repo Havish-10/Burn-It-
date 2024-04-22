@@ -24,9 +24,24 @@
         </ul>
         <section id="timer">
             <p id="setDOM">Sets Left:</p>
-            <p id="timeDOM">00 Hours :00 Mins :00 Secs</p>
+
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="80" stroke="#ccc" stroke-width="10" fill="none" />
+                <circle id="progress-circle" cx="100" cy="100" r="80" stroke="#007bff" stroke-width="10" fill="none"
+                  stroke-dasharray="502.4"
+                  stroke-dashoffset="0"
+                  transform="rotate(-90 100 100)">
+                </circle>
+                <text id="timeDOM" x="100" y="110" text-anchor="middle" font-size="15" fill="#000">00 Hour :00 Min :00 Sec</text>
+            </svg>
+              
+            <!-- <p id="timeDOM">00 Hours :00 Mins :00 Secs</p> -->
             <p id="restDOM">Rest Left</p>
         </section>
         <button id="backBtn">Back to List/Create Workouts</button>
+
+
+          
+          
     </section>
 </main>

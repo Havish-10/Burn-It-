@@ -1,5 +1,5 @@
 import { loadWorkout } from "./script.mjs";
-import { goBack } from "./timer.mjs";
+import { goBack, handleDOM } from "./timer.mjs";
 
 const saveBtn = document.querySelector('#save');
 const workoutList = document.querySelector('#workoutList');
@@ -137,13 +137,14 @@ function showWorkouts(workouts, where) {
     }
 }
 
-function selectWorkout(workout) {
+async function selectWorkout(workout) {
     const allWorkouts = document.querySelector('#allWorkouts');
     allWorkouts.hidden = true;
 
     const currentWorkout = document.querySelector('#currentWorkout');
     currentWorkout.hidden = false;
-    loadWorkout(workout.workoutID);
+    await loadWorkout(workout.workoutID);
+    handleDOM();
 }
 
 function eventListeners() {

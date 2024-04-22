@@ -2,15 +2,22 @@ let workingSet = {};
 let repetitions;
 let workID;
 let intervalID;
+let totalTime;
 const timerSection = document.querySelector('#timer');
+const progressCircle = document.querySelector('#progress-circle');
 
-export function createTimer(currentWorkout) {
+export function createTimer(currentWorkout, type) {
     workID = currentWorkout.workoutID;
     workingSet.hour = currentWorkout.hour;
     workingSet.mins = currentWorkout.mins;
     workingSet.secs = currentWorkout.secs;
     workingSet.restVal = currentWorkout.restVal;
+    totalTime = (currentWorkout.hour * 60 * 60) + (currentWorkout.mins * 60) + currentWorkout.secs;
     console.log(workingSet);
+
+    if ( type !== 'ignore'){
+        repetitions = currentWorkout.setNo - 1;
+    }
 
     if (!document.querySelector('#startBtn')){
         const btn = document.createElement('button');
@@ -18,7 +25,6 @@ export function createTimer(currentWorkout) {
         btn.textContent = 'Start The Workout!'
         btn.addEventListener('click', () => timer('working'));
         timerSection.append(btn);
-        repetitions = currentWorkout.setNo - 1;
     }
 
     if (!document.querySelector('#pauseBtn')){
@@ -78,7 +84,7 @@ async function rest() {
             let workout;
             if (response.ok) {
               workout = await response.json();
-              createTimer(workout);
+              createTimer(workout, 'ignore');
               timer('working');
             } else {
               console.log('failed to find workout', response);
@@ -101,6 +107,13 @@ function finishWorkout() {
     for (const btn of btns) {
         btn.disabled = true;
     }
+    const alarm = new Audio('/audio/alarm.mp3')
+    alarm.play();
+
+    setTimeout(function() {
+    alarm.pause();
+    alarm.currentTime = 0;
+    }, 12000);
 
     console.log('finished!');
 }
@@ -110,16 +123,16 @@ function stopWorkout() {
     handleDOM();
 }
 
-function handleDOM(){
+export function handleDOM(){
     const setDOM = document.querySelector('#setDOM');
     const timeDOM = document.querySelector('#timeDOM');
     const restDOM = document.querySelector('#restDOM');
 
     let timeText = timeDOM.textContent;
     let timeParts = timeText.split(':');
-    timeParts[0] = workingSet.hour.toString().padStart(2, '0') + ' Hours ';
-    timeParts[1] = workingSet.mins.toString().padStart(2, '0') + ' Mins ';
-    timeParts[2] = workingSet.secs.toString().padStart(2, '0') + ' Secs ';
+    timeParts[0] = workingSet.hour.toString().padStart(2, '0') + ' Hour ';
+    timeParts[1] = workingSet.mins.toString().padStart(2, '0') + ' Min ';
+    timeParts[2] = workingSet.secs.toString().padStart(2, '0') + ' Sec ';
     
     
 
@@ -129,9 +142,20 @@ function handleDOM(){
 
     setDOM.textContent ='Sets Left:' + ` ${repetitions}`;
     restDOM.textContent = workingSet.restVal.toString().padStart(2, '0') + 's Rest Left '
+    updateLoadingBar(workingSet.secs);
 }
 
+function updateLoadingBar(remainingTime) {
+    const percentageRemaining = 100 - ((remainingTime / totalTime) * 100);
+    
+    const pi = Math.PI;
+    const dashOffset = (2 * pi * 80) * ((100 - percentageRemaining)/100);
+    progressCircle.setAttribute('stroke-dashoffset', dashOffset);
+}
+
+
 export function goBack() {
+    stopWorkout();
     const allWorkouts = document.querySelector('#allWorkouts');
     allWorkouts.hidden = false;
 
