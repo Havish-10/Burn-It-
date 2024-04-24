@@ -22,6 +22,7 @@ export function createTimer(currentWorkout, type) {
     if (!document.querySelector('#startBtn')){
         const btn = document.createElement('button');
         btn.id = "startBtn";
+        btn.classList.add('start');
         btn.textContent = 'Start The Workout!'
         btn.addEventListener('click', () => timer('working'));
         timerSection.append(btn);
@@ -30,6 +31,7 @@ export function createTimer(currentWorkout, type) {
     if (!document.querySelector('#pauseBtn')){
         const btn = document.createElement('button');
         btn.id = "pauseBtn";
+        btn.classList.add('pause');
         btn.textContent = 'Pause The Workout!'
         btn.addEventListener('click', () => pauseWorkout());
         timerSection.append(btn);
@@ -38,6 +40,7 @@ export function createTimer(currentWorkout, type) {
     if (!document.querySelector('#stopBtn')){
         const btn = document.createElement('button');
         btn.id = "stopBtn";
+        btn.classList.add('stop');
         btn.textContent = 'Stop The Workout!'
         btn.addEventListener('click', () => stopWorkout());
         timerSection.append(btn);
@@ -142,7 +145,7 @@ export function handleDOM(){
 
     setDOM.textContent ='Sets Left:' + ` ${repetitions}`;
     restDOM.textContent = workingSet.restVal.toString().padStart(2, '0') + 's Rest Left '
-    updateLoadingBar(workingSet.secs);
+    updateLoadingBar((workingSet.hour * 3600) + (workingSet.mins * 60) + (workingSet.secs));
 }
 
 function updateLoadingBar(remainingTime) {

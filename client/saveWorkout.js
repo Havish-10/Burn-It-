@@ -109,6 +109,7 @@ function showWorkouts(workouts, where) {
         })
 
         const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete');
         deleteBtn.textContent = 'Delete Workout';
 
         deleteBtn.addEventListener('click', async () => {
@@ -129,8 +130,8 @@ function showWorkouts(workouts, where) {
         // const editBtn = document.createElement('button');
         // editBtn.textContent = 'Edit Workout';
         // start.href = `/workout/${workout.workoutID}`;
-        li.append('(', start);
-        li.append( deleteBtn, ')'); 
+        li.append(start);
+        li.append( deleteBtn); 
         // li.append(editBtn, ')');
     
         where.append(li);
