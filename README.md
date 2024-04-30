@@ -1,7 +1,7 @@
 # Burn It!
 
-HIIT Training App - UOP Web Pro 2024 Coursework.
-Start the script by running `npm start`
+- HIIT Training App - UOP Web Pro 2024 Coursework.
+- Start the script by running `npm start`
 
 ## Home Page
 
