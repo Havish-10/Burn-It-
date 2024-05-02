@@ -11,6 +11,55 @@ export let sets = 0;
 export const reps = 0;
 export let rest = 0;
 export let name = '';
+export let username;
+let accountId;
+
+async function getUser() {
+  const loginSect = document.querySelector('#logIn');
+  const userInput = document.querySelector('#username');
+  const allWorkouts = document.querySelector('#allWorkouts');
+  username = userInput.value;
+  loginSect.hidden = true;
+  allWorkouts.hidden = false;
+
+  const response = await fetch(`/user/${username}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    console.log('Yippie!');
+    const userData = await response.json();
+    accountId = userData;
+    loadWorkouts();
+    const saveBtn = document.querySelector('#save');
+    saveBtn.disabled = false;
+  } else {
+    console.log('failed to load user with this id', response);
+    createUser();
+  }
+}
+
+async function createUser() {
+  const payload = { name: username };
+  console.log('Payload', payload);
+
+  const response = await fetch('user', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    console.log('Created User!');
+    const userData = await response.json();
+    accountId = userData;
+    const saveBtn = document.querySelector('#save');
+    saveBtn.disabled = false;
+  } else {
+    console.log('failed to create user :(', response);
+  }
+}
 
 // Sorts out time in the event that seconds > 60/Minutes > 60. Unlikely for this to happen.
 function fixTime() {
@@ -68,7 +117,7 @@ function grabValues() {
 
 // Saves workout.
 async function sendWorkout() {
-  const payload = { mins: min, secs: sec, hour: hours, setNo: sets, rep: reps, restVal: rest, nameVal: name };
+  const payload = { accountID: accountId, mins: min, secs: sec, hour: hours, setNo: sets, rep: reps, restVal: rest, nameVal: name };
   console.log('Payload', payload);
 
   const response = await fetch('workout', {
@@ -125,7 +174,7 @@ function showWorkouts(workouts, where) {
     deleteBtn.textContent = 'Delete Workout';
 
     deleteBtn.addEventListener('click', async () => {
-      const response = await fetch(`/remove/${workout.workoutID}`, {
+      const response = await fetch(`/remove/${workout.workoutID}?id=${accountId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -168,12 +217,15 @@ function eventListeners() {
     grabValues();
   });
 
+  const signIn = document.querySelector('#signIn');
+  signIn.addEventListener('click', getUser);
+
   const backBtn = document.querySelector('#backBtn');
   backBtn.addEventListener('click', goBack);
 }
 
 async function loadWorkouts() {
-  const response = await fetch('workouts', {
+  const response = await fetch(`workouts?id=${accountId}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });

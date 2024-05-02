@@ -6,6 +6,8 @@ let totalTime;
 const timerSection = document.querySelector('#timer');
 const progressCircle = document.querySelector('#progress-circle');
 const alarm = new Audio('/audio/alarm.mp3');
+const workingSound = new Audio('/audio/working_music.mp3');
+workingSound.loop = true;
 
 // Function creates the timer and sets it up for every instance the "Start" Button is clicked.
 export function createTimer(currentWorkout, type) {
@@ -35,6 +37,11 @@ export function createTimer(currentWorkout, type) {
     btn.classList.add('start');
     btn.textContent = 'Start The Workout!';
     btn.addEventListener('click', () => timer('working'));
+    btn.addEventListener('click', () => workingSound.play());
+    // workingSound.addEventListener('ended', function () {
+    //   workingSound.currentTime = 0;
+    //   workingSound.play();
+    // });
     section.append(btn);
     timerSection.append(section);
   }
@@ -123,6 +130,9 @@ async function rest() {
 // Pauses workout.
 function pauseWorkout() {
   clearInterval(intervalID);
+  setTimeout(function () {
+    workingSound.pause();
+  }, 1);
   const start = document.querySelector('#startBtn');
   start.disabled = false;
   const pause = document.querySelector('#pauseBtn');
@@ -136,6 +146,7 @@ function finishWorkout() {
   for (const btn of btns) {
     btn.disabled = true;
   }
+  alarm.currentTime = 1;
   alarm.play();
 
   setTimeout(function () {
@@ -148,6 +159,10 @@ function finishWorkout() {
 
 function stopWorkout() {
   clearInterval(intervalID);
+  setTimeout(function () {
+    workingSound.pause();
+    workingSound.currentTime = 0;
+  }, 1);
   const controls = document.querySelectorAll('#startBtn, #pauseBtn, #stopBtn');
   for (const btn of controls) {
     btn.disabled = true;

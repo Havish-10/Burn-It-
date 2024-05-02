@@ -11,7 +11,13 @@
 <script defer src="saveWorkout.js" type="module"></script>
 <title>Burn It!</title>
 <main>
-    <section id="allWorkouts">
+    <section id="logIn">
+        <input id="username" placeholder="Insert Username">
+        <button id="signIn">Sign In</button>
+    </section>
+
+
+    <section id="allWorkouts" hidden>
         <section class="title">
             <h1> Burn it! </h1>
         </section>
@@ -20,9 +26,9 @@
             <input id="workoutName" type="text" placeholder="Name Workout">
             <input id="setTime" type="time" step="1" value="00:00:00">
             <input id="rest" type="number" max="60" placeholder="Rest Time (Max 60s)">
-            <input id="sets" type="value" placeholder="Sets (Default 1)">
+            <input id="sets" type="number" placeholder="Sets (Default 1)">
 
-            <button id="save">Save Workout!</button>
+            <button id="save" disabled>Save Workout!</button>
     </section>
 
     <section class="timer">
