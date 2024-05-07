@@ -8,7 +8,7 @@ async function showWorkout(workout, where) {
   currentWorkout = workout;
   workoutList.innerHTML = '';
   const li = document.createElement('li');
-  li.textContent = `${workout.nameVal} ( Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ) `;
+  li.textContent = `${workout.nameVal} ( Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ) `;
   li.dataset.id = workout.workoutID;
 
   where.append(li);

@@ -12,6 +12,8 @@
 <title>Burn It!</title>
 <main>
     <section id="logIn">
+        <h3 class="title">Hello User!</h3>
+        <p>Please input your username to either create an account or generate the data from your existing account.</p>
         <input id="username" placeholder="Insert Username">
         <button id="signIn">Sign In</button>
     </section>
@@ -24,7 +26,10 @@
 
         <section id="createWorkout" class="head"> 
             <input id="workoutName" type="text" placeholder="Name Workout">
-            <input id="setTime" type="time" step="1" value="00:00:00">
+            <input id="setTimeM" type="number" step="1" placeholder="Minutes (Max 15)">
+            <input id="setTimeS" type="number" step="1" placeholder="Seconds (max 60)">
+            <input id="reps" type="number" step="1" placeholder="Reps (Optional)">
+            <!-- <input id="setTime" type="time" step="1" value="00:00:00"> -->
             <input id="rest" type="number" max="60" placeholder="Rest Time (Max 60s)">
             <input id="sets" type="number" placeholder="Sets (Default 1)">
 
@@ -34,6 +39,7 @@
     <section class="timer">
         <h1>View Your Workouts:</h1>
         <ul id='workoutList'></ul>
+        <button id="signOut">Log Out.</button>
     </section>
     </section>
     <section id="currentWorkout" hidden>

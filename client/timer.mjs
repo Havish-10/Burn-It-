@@ -12,11 +12,10 @@ workingSound.loop = true;
 // Function creates the timer and sets it up for every instance the "Start" Button is clicked.
 export function createTimer(currentWorkout, type) {
   workID = currentWorkout.workoutID;
-  workingSet.hour = currentWorkout.hour;
   workingSet.mins = currentWorkout.mins;
   workingSet.secs = currentWorkout.secs;
   workingSet.restVal = currentWorkout.restVal;
-  totalTime = (currentWorkout.hour * 60 * 60) + (currentWorkout.mins * 60) + currentWorkout.secs;
+  totalTime = (currentWorkout.mins * 60) + currentWorkout.secs;
   console.log(workingSet);
 
   if (type !== 'ignore') {
@@ -73,9 +72,8 @@ function fixTime() {
   if (workingSet.secs <= 0 && workingSet.mins >= 1) {
     workingSet.secs = 60;
     workingSet.mins--;
-  } if (workingSet.mins <= 0 && workingSet.hour >= 1) {
+  } if (workingSet.mins <= 0) {
     workingSet.mins = 60;
-    workingSet.hour--;
   }
 
   if (workingSet.secs <= 0) {
@@ -178,7 +176,7 @@ export function handleDOM() {
 
   const timeText = timeDOM.textContent;
   const timeParts = timeText.split(':');
-  timeParts[0] = workingSet.hour.toString().padStart(2, '0') + ' Hour ';
+  // timeParts[0] = workingSet.hour.toString().padStart(2, '0') + ' Hour ';
   timeParts[1] = workingSet.mins.toString().padStart(2, '0') + ' Min ';
   timeParts[2] = workingSet.secs.toString().padStart(2, '0') + ' Sec ';
 
@@ -189,7 +187,7 @@ export function handleDOM() {
 
   setDOM.textContent = 'Sets Left:' + ` ${repetitions}`;
   restDOM.textContent = workingSet.restVal.toString().padStart(2, '0') + 's Rest Left ';
-  updateLoadingBar((workingSet.hour * 3600) + (workingSet.mins * 60) + (workingSet.secs));
+  updateLoadingBar((workingSet.mins * 60) + (workingSet.secs));
 }
 
 // Deals with the circular loading bar as the timer.

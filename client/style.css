@@ -2,6 +2,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    display: block;
     --btnW: 150px;
     --btnH: 75px;
     --inputW: 150px;
@@ -12,19 +13,26 @@
     --fontSize: 20px;
 }
 
-@media (min-width: 768px) {
+@media (width > 768px) {
     :root {
         font-family: "Roboto", sans-serif;
         font-weight: 400;
         font-style: normal;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas: "title" "input" "workouts" "idkyet"; 
+        width: 100vw;
+        height: 100vh;
+
         --btnW: 150px;
         --btnH: 75px;
         --inputW: 150px;
         --inputH: 40px;
-        --display: block;
         --svgW: 50%;
         --svgH: 50%;
         --fontSize: 20px;
+        --tempFont: 25px;
     }
     
 }
@@ -58,6 +66,12 @@ input {
     border-radius: 10px;
     width: var(--inputW);
     height: var(--inputH);
+}
+
+.title {
+    grid-area: title;
+    font-size: var(--tempFont);
+    color: aqua;
 }
 
 .workout-button {

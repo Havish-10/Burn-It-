@@ -6,14 +6,15 @@ const workoutList = document.querySelector('#workoutList');
 
 export let min = 0;
 export let sec = 0;
-export let hours = 0;
+// export let hours = 0;
 export let sets = 0;
-export const reps = 0;
+export let reps = 0;
 export let rest = 0;
 export let name = '';
 export let username;
 let accountId;
 
+// Grabs the Username and attempts to pull user information.
 async function getUser() {
   const loginSect = document.querySelector('#logIn');
   const userInput = document.querySelector('#username');
@@ -40,6 +41,7 @@ async function getUser() {
   }
 }
 
+// In the event that a user does not exist, an account is generated.
 async function createUser() {
   const payload = { name: username };
   console.log('Payload', payload);
@@ -61,6 +63,14 @@ async function createUser() {
   }
 }
 
+// Signing Out.
+function signOut() {
+  const loginSect = document.querySelector('#logIn');
+  const allWorkouts = document.querySelector('#allWorkouts');
+  loginSect.hidden = false;
+  allWorkouts.hidden = true;
+}
+
 // Sorts out time in the event that seconds > 60/Minutes > 60. Unlikely for this to happen.
 function fixTime() {
   if (sec >= 60) {
@@ -68,7 +78,6 @@ function fixTime() {
     min++;
   } if (min >= 60) {
     min = 0;
-    hours++;
   }
 }
 
@@ -76,7 +85,9 @@ function fixTime() {
 function grabValues() {
   fixTime();
   const nameVal = document.querySelector('#workoutName');
-  const timeVal = document.querySelector('#setTime');
+  const timeValMin = document.querySelector('#setTimeM');
+  const timeValSec = document.querySelector('#setTimeS');
+  const repsVal = document.querySelector('#reps');
   const restVal = document.querySelector('#rest');
   const setsVal = document.querySelector('#sets');
 
@@ -93,11 +104,29 @@ function grabValues() {
     restVal.value = 60;
   }
 
-  const [hour, minutes, seconds] = timeVal.value.split(':');
+  if (timeValMin.value > 15) {
+    timeValMin.value = 15;
+  }
+  if (!timeValMin.value) {
+    timeValMin.value = 2;
+  }
+  if (timeValSec.value > 60) {
+    timeValSec.value = 60;
+  }
+  if (!timeValSec.value) {
+    timeValSec.value = 30;
+  }
 
-  hours = parseInt(hour, 10);
-  min = parseInt(minutes, 10);
-  sec = parseInt(seconds, 10);
+  if (!repsVal.value) {
+    reps = 0;
+  } else {
+    reps = repsVal.value;
+  }
+  // const [hour, minutes, seconds] = timeVal.value.split(':');
+
+  // hours = parseInt(hour, 10);
+  min = parseInt(timeValMin.value, 10);
+  sec = parseInt(timeValSec.value, 10);
 
   if (restVal.value) {
     rest = restVal.value;
@@ -111,13 +140,13 @@ function grabValues() {
     sets = 1;
   }
 
-  console.log(`Min: ${min}, Sec ${sec}, Hour ${hours}, Rep ${reps}, Rest ${rest}, Name ${name}, Set ${sets}`);
+  console.log(`Min: ${min}, Sec ${sec}, Rep ${reps}, Rest ${rest}, Name ${name}, Set ${sets}`);
   sendWorkout();
 }
 
 // Saves workout.
 async function sendWorkout() {
-  const payload = { accountID: accountId, mins: min, secs: sec, hour: hours, setNo: sets, rep: reps, restVal: rest, nameVal: name };
+  const payload = { accountID: accountId, mins: min, secs: sec, setNo: sets, rep: reps, restVal: rest, nameVal: name };
   console.log('Payload', payload);
 
   const response = await fetch('workout', {
@@ -145,7 +174,7 @@ function showWorkouts(workouts, where) {
     const sect = document.createElement('section');
     li.classList.add('workout-item');
     // li.textContent = `${workout.nameVal} [ Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
-    li.textContent = `${workout.nameVal} [ Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
+    li.textContent = `${workout.nameVal} [ Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
     li.dataset.id = workout.workoutID;
 
     const start = document.createElement('button');
@@ -222,6 +251,9 @@ function eventListeners() {
 
   const backBtn = document.querySelector('#backBtn');
   backBtn.addEventListener('click', goBack);
+
+  const logout = document.querySelector('#signOut');
+  logout.addEventListener('click', signOut);
 }
 
 async function loadWorkouts() {

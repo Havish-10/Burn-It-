@@ -21,7 +21,7 @@ async function initDataBase() {
   await db.run('DROP TABLE IF EXISTS Workouts;');
   await db.run('DROP TABLE IF EXISTS Users;');
   await db.run('CREATE TABLE Users (accountID CHAR(36) PRIMARY KEY, username TEXT)');
-  await db.run('CREATE TABLE Workouts (workoutID CHAR(36) PRIMARY KEY, accountID CHAR(36), nameVal TEXT, restVal INT, setNo INT, rep INT, hour INT, mins INT, secs INT)');
+  await db.run('CREATE TABLE Workouts (workoutID CHAR(36) PRIMARY KEY, accountID CHAR(36), nameVal TEXT, restVal INT, setNo INT, rep INT, mins INT, secs INT)');
 }
 
 await initDataBase();
@@ -58,7 +58,7 @@ export async function addWorkout(payload) {
   const db = await connect;
   const workoutID = uuid();
 
-  await db.run('INSERT INTO Workouts VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [workoutID, payload.accountID, payload.nameVal, payload.restVal, payload.setNo, payload.rep, payload.hour, payload.mins, payload.secs]);
+  await db.run('INSERT INTO Workouts VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [workoutID, payload.accountID, payload.nameVal, payload.restVal, payload.setNo, payload.rep, payload.mins, payload.secs]);
 
   return listWorkouts(payload.accountID);
 }
