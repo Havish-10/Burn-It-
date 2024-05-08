@@ -54,6 +54,7 @@ async function createUser() {
 
   if (response.ok) {
     console.log('Created User!');
+    workoutList.innerHTML = '';
     const userData = await response.json();
     accountId = userData;
     const saveBtn = document.querySelector('#save');
@@ -172,6 +173,7 @@ function showWorkouts(workouts, where) {
   for (const workout of workouts) {
     const li = document.createElement('li');
     const sect = document.createElement('section');
+    sect.classList.add('controls');
     li.classList.add('workout-item');
     // li.textContent = `${workout.nameVal} [ Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
     li.textContent = `${workout.nameVal} [ Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;

@@ -1,40 +1,35 @@
 :root {
+    --display: block;
+    --columns: 1fr;
+    --rows: 1fr;
+    --areas: none;
+
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    display: block;
+    font-size: larger;
     --btnW: 150px;
     --btnH: 75px;
     --inputW: 150px;
-    --inputH: 40px;
-    --display: block;
-    --svgW: 100%;
-    --svgH: 100%;
-    --fontSize: 20px;
+    --inputH: 75px;
 }
 
-@media (width > 768px) {
-    :root {
+@media (min-width: 768px) {
+    /* :root {
+        --display: grid;
+        --columns: 1fr;
+        --rows: auto auto 1fr;
+        --areas: "title" "input" "workouts"; 
+
+
         font-family: "Roboto", sans-serif;
         font-weight: 400;
         font-style: normal;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-areas: "title" "input" "workouts" "idkyet"; 
-        width: 100vw;
-        height: 100vh;
-
-        --btnW: 150px;
-        --btnH: 75px;
-        --inputW: 150px;
-        --inputH: 40px;
-        --svgW: 50%;
-        --svgH: 50%;
-        --fontSize: 20px;
-        --tempFont: 25px;
-    }
+    } */
     
+    .workout-item {
+        flex-direction: row;
+    }
 }
 
 * {
@@ -43,53 +38,31 @@
     text-align: center;
 }
 
-main {
-    padding: var(--pad);
-    font-size: var(--fontSize);
-    margin: 0 auto;
-    display: var(--display);
-    gap: var(--gap);
-    height: var(--height);
-    width: var(--width);
-    width: 100vw;
-    height: 100vh;
+body {
     background-color: bisque;
 }
 
-li {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
 input {
+    align-items: center;
+    text-decoration: none;
     border-radius: 10px;
-    width: var(--inputW);
+    cursor: auto;
     height: var(--inputH);
+    width: var(--inputW);
 }
 
-.title {
-    grid-area: title;
-    font-size: var(--tempFont);
-    color: aqua;
-}
-
-.workout-button {
-    display: block;
-    float: right;
+input:hover {
+    background-color: scale-color(3e68ff, -20%);
+    transition: 220ms all ease-in-out;
 }
 
 button {
     background-color: #04AA6D;
-    font-weight: bolder;
-    border-radius: 10px;
-    color: black;
-    margin-bottom: 5px;
     width: var(--btnW);
     height: var(--btnH);
-    text-align: center;
-    text-decoration: none;
-    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -97,8 +70,13 @@ button:hover {
     transform: scale(1.1);
 }
 
+button:disabled, button[disabled] {
+    cursor: not-allowed;
+}
+
 .delete {
     background-color: red;
+    margin-top: 10px;
 }
 
 #backBtn {
@@ -116,3 +94,38 @@ button:hover {
 .stop {
     background-color: crimson;
 }
+
+/* .title {
+    grid-area: title;
+    background-color: aqua;
+} */
+
+#workoutList {
+    list-style: none;
+    padding: 0;
+}
+  
+.workout-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#controls {
+    margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+    .workout-item {
+        flex-direction: row;
+    }
+}
+
+/* .logOut {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
