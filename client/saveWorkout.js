@@ -93,7 +93,7 @@ function grabValues() {
   const setsVal = document.querySelector('#sets');
 
   console.log(nameVal.value);
-  if (nameVal.value !== '' && nameVal.value.length <= 20) {
+  if (nameVal.value !== '' && nameVal.value.length <= 255) {
     name = nameVal.value;
   } else if (nameVal.value === '') {
     name = 'Untitled Workout';
@@ -176,7 +176,7 @@ function showWorkouts(workouts, where) {
     sect.classList.add('controls');
     li.classList.add('workout-item');
     // li.textContent = `${workout.nameVal} [ Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
-    li.textContent = `${workout.nameVal} [ Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
+    li.textContent = `${workout.nameVal} [ ${workout.mins} Mins ${workout.secs} Secs, Reps: ${workout.rep}, ${workout.restVal}s Rest, Sets: ${workout.setNo} ] `;
     li.dataset.id = workout.workoutID;
 
     const start = document.createElement('button');

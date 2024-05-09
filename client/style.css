@@ -10,7 +10,7 @@
     font-size: larger;
     --btnW: 150px;
     --btnH: 75px;
-    --inputW: 150px;
+    --inputW: 200px;
     --inputH: 75px;
 }
 
@@ -49,6 +49,10 @@ input {
     cursor: auto;
     height: var(--inputH);
     width: var(--inputW);
+}
+
+#workoutName {
+    width: 350px;
 }
 
 input:hover {
@@ -122,10 +126,36 @@ button:disabled, button[disabled] {
     }
 }
 
+#instructions {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 /* .logOut {
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 } */
-
+#workoutList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+#workoutList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+  
+#workoutList li section {
+    margin-left: auto;
+}
+  
+#workoutList li section button {
+    margin-left: 10px;
+}

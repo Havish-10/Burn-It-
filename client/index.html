@@ -22,8 +22,20 @@
     <section id="allWorkouts" hidden>
         <section class="title">
             <h1> Burn it! </h1>
+            <h6>A High Interval Intensity Training App!</h2>
+                <br>
+                <h6>Instruction for use:</h6>
+                <section class="instructions" id="instructions">
+                <p>1. Select a type of working movement (or a group of movements) and name your workout</p>
+                <p>2. Choose an appropriate working time, the default is set to 2 minutes and 30 seconds.</p>
+                <p>3. Determine how many repetitions you would like to achieve! This is optional</p>
+                <p>4. Select an appropriate rest time</p>
+                <p>5. If you would like to repeat this workout multiple times, select your desired sets.</p>
+                <p>6. Get that burn on and start your workout!</p>
+                </section>
         </section>
 
+        <br>
         <section id="createWorkout" class="head"> 
             <input id="workoutName" type="text" placeholder="Name Workout">
             <input id="setTimeM" type="number" step="1" placeholder="Minutes (Max 15)">
@@ -37,8 +49,11 @@
     </section>
 
     <section class="timer">
+        <br>
         <h1>View Your Workouts:</h1>
+        <br>
         <ul id='workoutList'></ul>
+        <br>
         <button class="logOut" id="signOut">Log Out.</button>
     </section>
     </section>
