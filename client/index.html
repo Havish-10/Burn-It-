@@ -12,19 +12,15 @@
 <title>Burn It!</title>
 <main>
     <section id="logIn">
-        <h3 class="title">Hello User!</h3>
-        <p>Please input your username to either create an account or generate the data from your existing account.</p>
-        <input id="username" placeholder="Insert Username" value="Hello">
+        <h1 class="title" id="welc">Hello User!</h1>
+        <h3 id="direct">Please input your username to either create an account or generate the data from your existing account.</h3>
+        <br>
+        <input id="username" placeholder="Insert Username">
         <button id="signIn">Sign In</button>
-    </section>
-
-
-    <section id="allWorkouts" hidden>
-        <section class="title">
-            <h1> Burn it! </h1>
-            <h6>A High Interval Intensity Training App!</h2>
                 <br>
-                <h6>Instruction for use:</h6>
+                <br>
+                <br>
+                <h1>Instruction for use:</h1>
                 <section class="instructions" id="instructions">
                 <p>1. Select a type of working movement (or a group of movements) and name your workout</p>
                 <p>2. Choose an appropriate working time, the default is set to 2 minutes and 30 seconds.</p>
@@ -33,6 +29,14 @@
                 <p>5. If you would like to repeat this workout multiple times, select your desired sets.</p>
                 <p>6. Get that burn on and start your workout!</p>
                 </section>
+    </section>
+
+
+    <section id="allWorkouts" hidden>
+        <section class="title">
+            <h1 id="burn"> Burn it! </h1>
+            <br>
+            <p id="desc">A High Interval Intensity Training App!</p>
         </section>
 
         <br>
@@ -62,6 +66,7 @@
             <li>Example</li>
         </ul>
         <section id="timer">
+            <br>
             <section class="sets">
                 <p id="setDOM">Sets Left:</p>
             </section>

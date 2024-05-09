@@ -19,7 +19,11 @@ async function getUser() {
   const loginSect = document.querySelector('#logIn');
   const userInput = document.querySelector('#username');
   const allWorkouts = document.querySelector('#allWorkouts');
-  username = userInput.value;
+  if (userInput.value === '') {
+    username = 'Default';
+  } else {
+    username = userInput.value;
+  }
   loginSect.hidden = true;
   allWorkouts.hidden = false;
 
@@ -93,7 +97,7 @@ function grabValues() {
   const setsVal = document.querySelector('#sets');
 
   console.log(nameVal.value);
-  if (nameVal.value !== '' && nameVal.value.length <= 255) {
+  if (nameVal.value !== '' && nameVal.value.length <= 100) {
     name = nameVal.value;
   } else if (nameVal.value === '') {
     name = 'Untitled Workout';
@@ -176,7 +180,7 @@ function showWorkouts(workouts, where) {
     sect.classList.add('controls');
     li.classList.add('workout-item');
     // li.textContent = `${workout.nameVal} [ Hours; ${workout.hour}, Mins: ${workout.mins}, Secs: ${workout.secs}, Reps: ${workout.rep}, Rest: ${workout.restVal}, Sets: ${workout.setNo} ] `;
-    li.textContent = `${workout.nameVal} [ ${workout.mins} Mins ${workout.secs} Secs, Reps: ${workout.rep}, ${workout.restVal}s Rest, Sets: ${workout.setNo} ] `;
+    li.textContent = `${workout.nameVal} \r\n[ ${workout.mins} Mins ${workout.secs} Secs, Reps: ${workout.rep}, ${workout.restVal}s Rest, Sets: ${workout.setNo} ] `;
     li.dataset.id = workout.workoutID;
 
     const start = document.createElement('button');

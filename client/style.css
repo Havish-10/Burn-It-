@@ -10,7 +10,7 @@
     font-size: larger;
     --btnW: 150px;
     --btnH: 75px;
-    --inputW: 200px;
+    --inputW: 150px;
     --inputH: 75px;
 }
 
@@ -49,16 +49,12 @@ input {
     cursor: auto;
     height: var(--inputH);
     width: var(--inputW);
+    font-size: 26px;
 }
 
-#workoutName {
+/* #workoutName {
     width: 350px;
-}
-
-input:hover {
-    background-color: scale-color(3e68ff, -20%);
-    transition: 220ms all ease-in-out;
-}
+} */
 
 button {
     background-color: #04AA6D;
@@ -68,10 +64,6 @@ button {
     justify-content: center;
     border-radius: 10px;
     transition: transform 0.3s ease;
-}
-
-button:hover {
-    transform: scale(1.1);
 }
 
 button:disabled, button[disabled] {
@@ -107,6 +99,7 @@ button:disabled, button[disabled] {
 #workoutList {
     list-style: none;
     padding: 0;
+    font-size: 26px;
 }
   
 .workout-item {
@@ -117,7 +110,9 @@ button:disabled, button[disabled] {
 }
 
 #controls {
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 22px;
 }
 
 @media (min-width: 768px) {
@@ -149,7 +144,7 @@ button:disabled, button[disabled] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
   
 #workoutList li section {
@@ -158,4 +153,96 @@ button:disabled, button[disabled] {
   
 #workoutList li section button {
     margin-left: 10px;
+}
+
+#username {
+    width: 350px;
+    height: 150px;
+    font-size: 32px;
+}
+
+#signIn {
+    height: 150px;
+    width: 200px;
+    font-size: 22px;
+}
+
+::placeholder {
+    font-size: 22px;
+}
+
+#save {
+    height: 100px;
+    width: 200px;
+    font-size: 22px;
+}
+
+#backBtn {
+    margin-top: 50px;
+    width: 300px;
+    height: 200px;
+    font-size: 22px;
+}
+
+#startBtn {
+    margin-top: 50px;
+    width: 300px;
+    height: 200px;
+    font-size: 22px; 
+}
+
+#stopBtn {
+    margin-top: 50px;
+    width: 300px;
+    height: 200px;
+    font-size: 22px; 
+}
+
+#pauseBtn {
+    margin-top: 50px;
+    width: 300px;
+    height: 200px;
+    font-size: 22px; 
+}
+
+#currentWorkoutList {
+    font-size: 32px;
+}
+
+svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+.logOut {
+    height: 150px;
+    width: 350px;
+    font-size: 22px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+.timer svg {
+    width: 100%;
+    height: 100%;
+}
+
+#restDOM {
+    font-size: 36px;
+}
+
+#setDOM {
+    font-size: 36px;
+}
+
+#burn {
+    font-size: 32px;
+}
+
+#desc {
+    font-size: 26px;
 }
