@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node svr.js --watch svr",
-    "setup": "node setup.mjs"
+    "setup": "node setup.mjs",
+    "start": "node svr.js --watch svr"
   },
   "author": "Havish Patel",
   "license": "ISC",
