@@ -72,8 +72,6 @@ function fixTime() {
   if (workingSet.secs <= 0 && workingSet.mins >= 1) {
     workingSet.secs = 60;
     workingSet.mins--;
-  } if (workingSet.mins <= 0) {
-    workingSet.mins = 60;
   }
 
   if (workingSet.secs <= 0) {

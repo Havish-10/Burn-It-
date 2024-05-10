@@ -110,8 +110,9 @@ button:disabled, button[disabled] {
 }
 
 #controls {
+    float: right;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-right: 10px;
     font-size: 22px;
 }
 
@@ -122,12 +123,14 @@ button:disabled, button[disabled] {
 }
 
 #instructions {
-    font-size: small;
+    text-align: center;
+    font-size: 22px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 /* .logOut {
     position: fixed;
     bottom: 0;
