@@ -112,8 +112,9 @@ The use of AI development of this project was attempted to be kept to a minimum.
 
 ## Assets Used
 
-*iPhone alarm ringtone by IonutHe - Download on ZEDGETM | 7815. (n.d.). Zedge. Retrieved April 30, 2024, from https://www.zedge.net/ringtone/abb638cd-7ec4-42b2-8e1e-72ebdd4c7815
-*Phonk. 2024. Upbeat Drift [Audio file]. Retrieved from https://pixabay.com/music/upbeat-drift-phonk-200108/
+* iPhone alarm ringtone by IonutHe - Download on ZEDGETM | 7815. (n.d.). Zedge. Retrieved April 30, 2024, from https://www.zedge.net/ringtone/abb638cd-7ec4-42b2-8e1e-72ebdd4c7815
+
+* Phonk. 2024. Upbeat Drift [Audio file]. Retrieved from https://pixabay.com/music/upbeat-drift-phonk-200108/
 
 ## Inspiration
 Early Prototypes and Intitial ideas were derived from this gitHub repo:
