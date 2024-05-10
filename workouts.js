@@ -9,7 +9,6 @@ async function init() {
     driver: sqlite3.Database,
     verbose: true,
   });
-  await db.migrate({ migrationsPath: './migrations-sqlite' });
   return db;
 }
 
