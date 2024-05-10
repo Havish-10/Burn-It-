@@ -96,7 +96,6 @@ function grabValues() {
   const restVal = document.querySelector('#rest');
   const setsVal = document.querySelector('#sets');
 
-  console.log(nameVal.value);
   if (nameVal.value !== '' && nameVal.value.length <= 100) {
     name = nameVal.value;
   } else if (nameVal.value === '') {
@@ -145,7 +144,6 @@ function grabValues() {
     sets = 1;
   }
 
-  console.log(`Min: ${min}, Sec ${sec}, Rep ${reps}, Rest ${rest}, Name ${name}, Set ${sets}`);
   sendWorkout();
 }
 

@@ -81,7 +81,6 @@ function fixTime() {
   } else {
     timer('working');
   }
-  console.log(workingSet);
 }
 
 // Deals with sorting between Rest Period and Working Sets.
@@ -120,7 +119,6 @@ async function rest() {
       timer('rest');
     }
   }
-  console.log(workingSet);
 }
 
 // Pauses workout.

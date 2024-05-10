@@ -12,7 +12,6 @@ async function showWorkout(workout, where) {
   li.dataset.id = workout.workoutID;
 
   where.append(li);
-  console.log(where);
   await createTimer(currentWorkout);
 }
 
@@ -22,7 +21,6 @@ export async function loadWorkout(id) {
   let workout;
   if (response.ok) {
     workout = await response.json();
-    console.log(workout);
     showWorkout(workout, workoutList);
   } else {
     console.log('failed to find workout', response);
